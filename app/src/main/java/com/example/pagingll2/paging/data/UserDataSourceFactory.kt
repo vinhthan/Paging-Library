@@ -7,8 +7,8 @@ import io.reactivex.disposables.CompositeDisposable
 
 import androidx.paging.DataSource
 
-class UserDataResourceFactory(private val githubService: GithubService,
-                              private val compositeDisposable: CompositeDisposable): DataSource.Factory<Long, User>() {
+class UserDataSourceFactory(private val githubService: GithubService,
+                            private val compositeDisposable: CompositeDisposable): DataSource.Factory<Long, User>() {
 
     val userDataSourceLiveData = MutableLiveData<UserDataResource>()
 
