@@ -7,16 +7,19 @@ import io.reactivex.disposables.CompositeDisposable
 
 import androidx.paging.DataSource
 
-class UserDataSourceFactory(private val githubService: GithubService,
-                            private val compositeDisposable: CompositeDisposable): DataSource.Factory<Long, User>() {
+class UserDataSourceFactory(
+    private val githubService: GithubService,
+    private val compositeDisposable: CompositeDisposable): DataSource.Factory<Long, User>() {
 
-    val userDataSourceLiveData = MutableLiveData<UserDataResource>()
+    val userDataSourceLiveData = MutableLiveData<UserDataSource>()
 
     override fun create(): DataSource<Long, User> {
-        val userDataSource = UserDataResource(githubService, compositeDisposable)
+        val userDataSource = UserDataSource(githubService, compositeDisposable)
         userDataSourceLiveData.postValue(userDataSource)
         return userDataSource
     }
 
 
 }
+
+//Dùng để khởi tạo DataSource, cung cấp dữ liệu cho PagedList

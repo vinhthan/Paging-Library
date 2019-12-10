@@ -6,9 +6,9 @@ import com.example.pagingll2.paging.api.GithubService
 import com.example.pagingll2.paging.model.User
 import io.reactivex.disposables.CompositeDisposable
 
-class UserDataResource(private val githubService: GithubService,
-                       private val compositeDisposable: CompositeDisposable) :
-    ItemKeyedDataSource<Long, User>() {
+class UserDataSource(
+    private val githubService: GithubService,
+    private val compositeDisposable: CompositeDisposable) : ItemKeyedDataSource<Long, User>() {
 
     val isLoading = MutableLiveData<Boolean>()
     val isRefresh = MutableLiveData<Boolean>()
@@ -27,6 +27,7 @@ class UserDataResource(private val githubService: GithubService,
             }))
     }
 
+    //dc goi khi list dat gioi han
     override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<User>) {
         isLoading.postValue(true)
         compositeDisposable.add(githubService.getUsers(params.key, params.requestedLoadSize)
@@ -38,6 +39,7 @@ class UserDataResource(private val githubService: GithubService,
             }))
     }
 
+    // dc goi sau loadInitial
     override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<User>) {
 
     }

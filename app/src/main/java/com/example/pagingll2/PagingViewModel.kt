@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.pagingll2.paging.api.GithubService
-import com.example.pagingll2.paging.data.UserDataResource
+import com.example.pagingll2.paging.data.UserDataSource
 import com.example.pagingll2.paging.data.UserDataSourceFactory
 import com.example.pagingll2.paging.model.User
 import io.reactivex.disposables.CompositeDisposable
@@ -16,7 +16,7 @@ class PagingViewModel : ViewModel() {
     lateinit var userList: LiveData<PagedList<User>>
     private val compositeDisposable = CompositeDisposable()
 
-    private val pageSite = 5
+    private val pageSite = 10//
 
     private val sourceFactory: UserDataSourceFactory
 
@@ -30,10 +30,10 @@ class PagingViewModel : ViewModel() {
         userList = LivePagedListBuilder<Long, User>(sourceFactory, config).build()
     }
 
-    fun getLoading() = Transformations.switchMap<UserDataResource, Boolean>(
+    fun getLoading() = Transformations.switchMap<UserDataSource, Boolean>(//switchMap lay ra ptu moi nhat
         sourceFactory.userDataSourceLiveData){it.isLoading}
 
-    fun getRefreshState() = Transformations.switchMap<UserDataResource, Boolean>(
+    fun getRefreshState() = Transformations.switchMap<UserDataSource, Boolean>(
         sourceFactory.userDataSourceLiveData) {it.isRefresh}
 
     fun reset(){
@@ -45,9 +45,6 @@ class PagingViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 
-
-
-
-
-
 }
+//ViewModel sẽ chịu tạo PagedList và cung cấp cho hoạt động để nó
+// có thể thay đổi dữ liệu mỗi khi request từ server

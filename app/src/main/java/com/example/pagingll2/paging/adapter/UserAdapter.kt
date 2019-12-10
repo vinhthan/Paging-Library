@@ -1,7 +1,6 @@
 package com.example.pagingll2.paging.adapter
 
-import android.app.usage.NetworkStats
-import android.provider.UserDictionary
+
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -10,8 +9,7 @@ import com.example.pagingll2.R
 import com.example.pagingll2.paging.model.User
 
 class UserAdapter(
-    private val retryCallback: () -> Unit) : PagedListAdapter<User, RecyclerView.ViewHolder>(
-    UserDiffCallback) {
+    private val retryCallback: () -> Unit) : PagedListAdapter<User, RecyclerView.ViewHolder>(UserDiffCallback) {
 
     companion object{
         val UserDiffCallback = object : DiffUtil.ItemCallback<User>(){

@@ -14,8 +14,7 @@ class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     companion object{
         fun create(parent: ViewGroup): UserItemViewHolder{
-            val layoutInflater = LayoutInflater.from(parent.context)
-            val view = layoutInflater.inflate(R.layout.item_paging_user, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_paging_user, parent, false)
             return UserItemViewHolder(view)
         }
     }
